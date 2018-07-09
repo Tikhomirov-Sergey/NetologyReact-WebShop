@@ -56,12 +56,12 @@
   position: static;
   width: 33px;
   height: 30px;
-  background-image: url(../../layout/img/new-deals__product_favorite_chosen.png);
+  background-image: url(../img/new-deals__product_favorite_chosen.png);
   background-repeat: no-repeat;
 }
 .product-catalogue_favorite .product-catalogue__product_favorite a:hover,
 .product-catalogue_favorite .product-catalogue__product_favorite p:hover {
-  background-image: url(../../layout/img/new-deals__product_favorite_refuse.png);
+  background-image: url(../img/new-deals__product_favorite_refuse.png);
   cursor: pointer;
 }
 .product-catalogue_favorite .sizes {

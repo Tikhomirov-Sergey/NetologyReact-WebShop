@@ -1,30 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class TopMenu extends Component {
-
-    links = [
-        {
-            text: "Возврат",
-            link: "/#"
-        },
-        {
-            text: "Доставка и оплата",
-            link: "/#"
-        },
-        {
-            text: "О магазине",
-            link: "/#"
-        },
-        {
-            text: "Контакты",
-            link: "/#"
-        },
-        {
-            text: "Новости",
-            link: "/#"
-        }
-    ];
-
 
     render() {
         return (
@@ -32,10 +9,10 @@ export default class TopMenu extends Component {
                 <div className="wrapper">
                     <ul className="top-menu__items">
                         {
-                            this.links.map((item) => {
+                            this.props.items.map((item) => {
                                 return (
-                                    <li>
-                                        <a className="menu__item" href={item.link}>{item.text}</a>
+                                    <li className="top-menu__item" key={item.text}>
+                                        <a href={item.link}>{item.text}</a>
                                     </li>
                                 )
                             })
@@ -47,3 +24,9 @@ export default class TopMenu extends Component {
     }
 }
 
+TopMenu.propTypes = {
+    items:PropTypes.arrayOf(PropTypes.shape({
+        link:PropTypes.string.isRequired,
+        text:PropTypes.string.isRequired
+    }))
+};

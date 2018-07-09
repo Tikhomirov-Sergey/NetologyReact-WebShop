@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": 20,
+      "categoryId": 13,
+      "title": "Кроссовки как у Pharrell Williams",
+      "images": [
+        "url(/static/media/new-deals__product_1.98300308.jpg)",
+        "https://neto-api.herokuapp.com/bosa-noga/5113054-1_1.jpg"
+      ],
+      "brand": "Chanel",
+      "price": 12000,
+      "oldPrice": 14000
+    },
+    {
+      "id": 21,
+      "categoryId": 13,
+      "title": "Туфли принцессы",
+      "images": [
+        "url(/static/media/new-deals__product_active.929e12c3.jpg)",
+        "https://neto-api.herokuapp.com/bosa-noga/s800.webp"
+      ],
+      "brand": "Dolce & Gabbana",
+      "price": 3000
+    },
+    {
+      "id": 81,
+      "category": 13,
+      "title": "Канатные туфли",
+      "images": [
+        "url(/static/media/new-deals__product_2.7cb85f96.jpg)",
+        "https://cdn-images.farfetch-contents.com/12/98/88/55/12988855_13680297_1000.jpg"
+      ],
+      "brand": "KAT MACONIE",
+      "price": 1200
+    }
+  ],
+  "status": "ok"
+}
