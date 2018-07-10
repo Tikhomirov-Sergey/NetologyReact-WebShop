@@ -25,7 +25,7 @@
     },
     {
       "id": 81,
-      "category": 13,
+      "categoryId": 13,
       "title": "Канатные туфли",
       "images": [
         "url(/static/media/new-deals__product_2.7cb85f96.jpg)",

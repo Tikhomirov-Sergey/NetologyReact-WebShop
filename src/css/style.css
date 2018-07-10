@@ -513,9 +513,15 @@ li a:hover {
   background-image: url(../img/new-deals__product_favorite.png);
   background-repeat: no-repeat;
 }
+.new-deals__product_favorite.chosen {
+  background-image: url(../img/new-deals__product_favorite_chosen.png);
+}
 .new-deals__product_favorite:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+.new-deals__product_favorite.chosen:hover {
+  background-image: url(../img/new-deals__product_favorite_refuse.png);
 }
 .new-deals__product-info {
   padding-top: 8px;

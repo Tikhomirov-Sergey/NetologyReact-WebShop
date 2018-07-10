@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import $ from "jquery";
 
 import ProductCard from './ProductCard';
-
-
+import Favorite from '../../../Shared/Favorite';
 
 export default class FeaturedSlider extends Component {
 
@@ -14,7 +13,8 @@ export default class FeaturedSlider extends Component {
         this.state = {
             first:null,
             active:null,
-            last:null
+            last:null,
+            error:false
         };
 
         this.onClickArrow = this.onClickArrow.bind(this);
@@ -23,14 +23,18 @@ export default class FeaturedSlider extends Component {
     componentWillMount() {
 
         if(this.props.featured.data.length < 3) {
-            this.error = true;
+
+            if(!this.state.error) {
+                this.setState({
+                    error:true
+                })
+            }
         }
         else {
             this.setState({
                 first:this.props.featured.data[0],
                 active:this.props.featured.data[1],
-                last:this.props.featured.data[2],
-                activeId:1
+                last:this.props.featured.data[2]
             })
         }
     }
@@ -51,8 +55,6 @@ export default class FeaturedSlider extends Component {
 
         const lastItem = this.props.featured.data.length - 1;
 
-
-        debugger;
         switch (newActiveId) {
             case (0): {
                 newFirstId = lastItem;
@@ -94,12 +96,19 @@ export default class FeaturedSlider extends Component {
             this.$firstProduct.css({"background-image":this.state.first.images[0] || "none"});
             this.$activeProduct.css({"background-image":this.state.active.images[0] || "none"});
             this.$lastProduct.css({"background-image":this.state.last.images[0] || "none"});
+        } else {
+
+            if(!this.state.error) {
+                this.setState({
+                    error:true
+                })
+            }
         }
     }
 
     render() {
 
-        if(this.error)
+        if(this.state.error || !this.state.active)
             return (<h2>Новинки отсутствуют</h2>);
 
 
@@ -115,7 +124,7 @@ export default class FeaturedSlider extends Component {
                     <div className="new-deals__product new-deals__product_active"
                          ref={ref => this.$activeProduct = $(ref)} >
                         <a href="catalogue.html"/>
-                        <div className="new-deals__product_favorite"/>
+                        <Favorite id={this.state.active.id}/>
                     </div>
                     <div className="new-deals__product new-deals__product_last"
                          ref={ref => this.$lastProduct = $(ref)} >

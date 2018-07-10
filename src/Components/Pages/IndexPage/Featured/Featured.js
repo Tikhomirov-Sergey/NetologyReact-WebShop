@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 import FeaturedMenu from './FeaturedMenu';
 import FeaturedSlider from './FeaturedSlider';
 
-import getData from '../../../../Classes/getData';
+import GetData from '../../../../Classes/GetData';
 
 export default class Featured extends Component {
 
@@ -14,38 +14,52 @@ export default class Featured extends Component {
 
         this.state = {
             categories:[],
+            idActiveCategory:null,
             featured:null
         };
 
         this.setCategories = this.setCategories.bind(this);
         this.setFeatured = this.setFeatured.bind(this);
+        this.changeCategory = this.changeCategory.bind(this);
     }
 
     componentDidMount() {
-
-        getData.getCategories(this.setCategories);
-        getData.getFeatured(this.setFeatured);
+        GetData.getCategories(this.setCategories);
     }
 
     setCategories(error, data) {
-        if(!error) {
+        if(!error && data.length !== 0) {
+
+            const idActiveCategory = data[0].id;
+
             this.setState({
-                categories:data
+                categories:data,
+                idActiveCategory:idActiveCategory
             });
+
+            GetData.getFeatured(idActiveCategory, this.setFeatured);
         }
     }
 
     setFeatured(error, data) {
-        if(!error) {
+        if(!error) {debugger;
             this.setState({
                 featured:data
             });
         }
     }
 
+    changeCategory(idCategory) {debugger;
+        this.setState({
+            idActiveCategory:idCategory
+        });
+
+        GetData.getFeatured(idCategory, this.setFeatured);
+    }
+
     render() {
 
-        if(this.state.categories.length === 0 || !this.state.featured) {
+        if(this.state.categories.length === 0 || (!this.state.featured || !this.state.featured.status || this.state.featured.status !== "ok")) {
 
             return (
                 <section className="new-deals wave-bottom">
@@ -58,7 +72,7 @@ export default class Featured extends Component {
         return (
                 <section className="new-deals wave-bottom">
                     <h2 className="h2">Новинки</h2>
-                    <FeaturedMenu items={this.state.categories}/>
+                    <FeaturedMenu items={this.state.categories} idActiveCategory={this.state.idActiveCategory} onChangeCategory={this.changeCategory} />
                     <FeaturedSlider featured={this.state.featured}/>
                 </section>
         );

@@ -2,7 +2,7 @@
 import categories from '../data/categories.json';
 import featured from '../data/featured.json';
 
-export default class getData {
+export default class GetData {
 
     static getCategories( callback) {
         setTimeout(() => {
@@ -10,9 +10,12 @@ export default class getData {
         }, 1000);
     }
 
-    static getFeatured(callback) {
+    static getFeatured(idCategory, callback) {
         setTimeout(() => {
-            callback(false, featured);
+
+            let data = featured.data.filter(item => item['categoryId'] === parseInt(idCategory));
+            callback(false, {data, status:"ok"});
+
         }, 1000);
     }
 }
