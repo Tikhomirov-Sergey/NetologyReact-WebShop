@@ -6,7 +6,7 @@ export default class HeaderLogo extends Component {
     render() {
         return (
             <div className="header-main__logo">
-                <a href="#">
+                <a href="/">
                     <h1>
                         <img src={this.props.logo.src} alt={this.props.logo.alt} />
                     </h1>

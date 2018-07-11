@@ -1,4 +1,4 @@
 export default {
-    currency:"₽",
+    currency:"$",
     nameShopInLocalStorage:"BosaNoga"
 }

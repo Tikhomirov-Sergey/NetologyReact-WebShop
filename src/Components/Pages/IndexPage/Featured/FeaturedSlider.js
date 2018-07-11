@@ -21,8 +21,36 @@ export default class FeaturedSlider extends Component {
     }
 
     componentWillMount() {
+        this.setActiveItems(false);
+    }
 
-        if(this.props.featured.data.length < 3) {
+    componentDidMount() {
+        this.setBackgroundImage();
+    }
+
+    componentWillReceiveProps(newProps) {
+        
+        if(newProps.featured) {
+            this.setActiveItems(newProps.featured);
+        }
+        else {
+            if(!this.state.error) {
+                this.setState({
+                    error:true
+                })
+            }
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        this.setBackgroundImage();
+    }
+
+    setActiveItems(newItems) {
+
+        newItems = newItems || this.props.featured;
+
+        if(newItems.data.length < 3) {
 
             if(!this.state.error) {
                 this.setState({
@@ -32,19 +60,13 @@ export default class FeaturedSlider extends Component {
         }
         else {
             this.setState({
-                first:this.props.featured.data[0],
-                active:this.props.featured.data[1],
-                last:this.props.featured.data[2]
+                first:newItems.data[0],
+                active:newItems.data[1],
+                last:newItems.data[2],
+                activeId:1,
+                error:false
             })
         }
-    }
-
-    componentDidMount() {
-        this.setBackgroundImage();
-    }
-
-    componentWillUpdate() {
-        this.setBackgroundImage();
     }
 
     onClickArrow(isLeftClick) {
@@ -52,6 +74,8 @@ export default class FeaturedSlider extends Component {
         let newActiveId = this.state.activeId + (isLeftClick ? -1 : 1);
         let newFirstId;
         let newLastId;
+
+        debugger;
 
         const lastItem = this.props.featured.data.length - 1;
 
@@ -80,7 +104,7 @@ export default class FeaturedSlider extends Component {
             }
             default:
                 newFirstId = newActiveId - 1;
-                newLastId = newLastId + 1;
+                newLastId = newActiveId + 1;
         }
 
         this.setState({

@@ -49,9 +49,10 @@ export default class Featured extends Component {
         }
     }
 
-    changeCategory(idCategory) {debugger;
+    changeCategory(idCategory) {
         this.setState({
-            idActiveCategory:idCategory
+            idActiveCategory:idCategory,
+            featured:{status:"load"}
         });
 
         GetData.getFeatured(idCategory, this.setFeatured);
@@ -67,6 +68,17 @@ export default class Featured extends Component {
                 </section>
             )
 
+        }
+
+        if(this.state.featured && this.state.featured.status === "load") {
+
+            return (
+                <section className="new-deals wave-bottom">
+                    <h2 className="h2">Новинки</h2>
+                    <FeaturedMenu items={this.state.categories} idActiveCategory={this.state.idActiveCategory} onChangeCategory={this.changeCategory} />
+                    <BubbleLoader/>
+                </section>
+            )
         }
 
         return (

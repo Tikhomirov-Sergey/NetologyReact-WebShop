@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Switch, Router, Route, BrowserRouter} from 'react-router-dom';
 
 import './css/style.css';
 import './css/normalize.css';
@@ -16,13 +16,13 @@ import Footer from "./Components/Shared/Footer/Footer";
 class App extends Component {
   render() {
     return (
-        <HashRouter>
+        <BrowserRouter>
             <div className="container">
               <Header/>
               <Route path="/" exact component={IndexPage} />
               <Footer/>
             </div>
-        </HashRouter>
+        </BrowserRouter>
     );
   }
 }

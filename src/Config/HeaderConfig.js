@@ -5,23 +5,23 @@ export default {
     topMenu: [
         {
             text: "Возврат",
-            link: "/#"
+            link: "/"
         },
         {
             text: "Доставка и оплата",
-            link: "/#"
+            link: "/"
         },
         {
             text: "О магазине",
-            link: "/#"
+            link: "/"
         },
         {
             text: "Контакты",
-            link: "/#"
+            link: "/"
         },
         {
             text: "Новости",
-            link: "/#"
+            link: "/"
         }
     ],
     headerMain: {
@@ -51,12 +51,12 @@ export default {
             className:"main-menu__item_sales"
         },
         {
-            to:"/ffffff",
+            to:"/",
             text:"Женская обувь",
             className:"main-menu__item_women"
         },
         {
-            to:"/gfgdfg",
+            to:"/",
             text:"Мужская обувь",
             className:"main-menu__item_men"
         },

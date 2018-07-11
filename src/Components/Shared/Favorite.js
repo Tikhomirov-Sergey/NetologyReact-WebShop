@@ -16,6 +16,15 @@ export default class Favorite extends Component {
         }
     }
 
+    componentWillUpdate(newProps) {
+
+        if(newProps.id !== this.props.id) {
+            this.setState({
+                favorite:this.checkFavoritee()
+            })
+        }
+    }
+
     checkFavoritee() {
         const favorites = this.props.favorites || LocalStorageHelper.getFavorite();
 
@@ -26,8 +35,6 @@ export default class Favorite extends Component {
     }
 
     toggleFavorite(isFavorite) {
-
-        debugger;
 
         if(isFavorite) {
             LocalStorageHelper.removeFavorite(this.props.id);
