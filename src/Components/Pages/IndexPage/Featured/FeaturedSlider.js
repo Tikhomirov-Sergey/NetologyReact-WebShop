@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import $ from "jquery";
 
@@ -142,17 +143,17 @@ export default class FeaturedSlider extends Component {
                     <div className="new-deals__arrow new-deals__arrow_left arrow" onClick={() => {this.onClickArrow(true)}}/>
                     <div className="new-deals__product new-deals__product_first"
                          ref={ref => this.$firstProduct = $(ref)} >
-                        <a href="#"/>
+                        <Link to={`/product/${this.state.first.id}`} />
                     </div>
 
                     <div className="new-deals__product new-deals__product_active"
                          ref={ref => this.$activeProduct = $(ref)} >
-                        <a href="catalogue.html"/>
+                        <Link to={`/product/${this.state.active.id}`} />
                         <Favorite id={this.state.active.id}/>
                     </div>
                     <div className="new-deals__product new-deals__product_last"
                          ref={ref => this.$lastProduct = $(ref)} >
-                        <a href="#"/>
+                        <Link to={`/product/${this.state.last.id}`} />
                     </div>
                     <div className="new-deals__arrow new-deals__arrow_right arrow" onClick={() => {this.onClickArrow(false)}}/>
                 </div>

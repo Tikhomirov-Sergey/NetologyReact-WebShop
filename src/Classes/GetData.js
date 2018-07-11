@@ -1,14 +1,25 @@
 
+import axios from 'axios';
+
 import categories from '../data/categories.json';
 import featured from '../data/featured.json';
 import products from '../data/products.json';
 
+import shopConfig from '../Config/ShopConfig';
+
 export default class GetData {
 
-    static getCategories( callback) {
-        setTimeout(() => {
-            callback(false, categories);
-        }, 1000);
+    static getCategories(callback) {
+        const link = `${shopConfig.apiHost}/categories`;
+
+        axios
+            .get(link)
+            .then((response) => {
+                callback(false, response.data.data)
+            })
+            .catch((error) => {
+                callback(error);
+            })
     }
 
     static getFeatured(idCategory, callback) {
@@ -21,16 +32,16 @@ export default class GetData {
     }
 
     static getProductByid(id, callback) {
-        setTimeout(() => {
-            
-            let data = products.data.filter(item => item['id'] === parseInt(id));
 
-            if(data && data.length === 0) {
-                data = null;
-            }
+        const link = `${shopConfig.apiHost}/products/${id}`;
 
-            callback(false, data);
-            
-        }, 1000);
+        axios
+            .get(link)
+            .then((response) => {
+                callback(false, response.data.data)
+            })
+            .catch((error) => {
+                callback(error);
+            })
     }
 }

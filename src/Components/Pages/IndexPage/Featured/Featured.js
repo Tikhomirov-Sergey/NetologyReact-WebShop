@@ -42,7 +42,7 @@ export default class Featured extends Component {
     }
 
     setFeatured(error, data) {
-        if(!error) {debugger;
+        if(!error) {
             this.setState({
                 featured:data
             });

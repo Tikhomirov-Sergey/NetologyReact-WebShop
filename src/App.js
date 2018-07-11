@@ -11,6 +11,7 @@ import  './css/style-product-card.css';
 
 import Header from './Components/Shared/Header/Header';
 import IndexPage from './Components/Pages/IndexPage/IndexPage'
+import CardProductPage from './Components/Pages/CardProductPage/CardProductPage';
 import Footer from "./Components/Shared/Footer/Footer";
 
 class App extends Component {
@@ -19,7 +20,10 @@ class App extends Component {
         <BrowserRouter>
             <div className="container">
               <Header/>
+
               <Route path="/" exact component={IndexPage} />
+              <Route path="/product/:id"  component={CardProductPage} />
+
               <Footer/>
             </div>
         </BrowserRouter>
