@@ -6,6 +6,8 @@ import $ from "jquery";
 import ProductCard from './ProductCard';
 import Favorite from '../../../Shared/Favorite';
 
+import SliderHelper from '../../../../Classes/SliderHelper';
+
 export default class FeaturedSlider extends Component {
 
     constructor(props) {
@@ -71,49 +73,18 @@ export default class FeaturedSlider extends Component {
     }
 
     onClickArrow(isLeftClick) {
-
-        let newActiveId = this.state.activeId + (isLeftClick ? -1 : 1);
-        let newFirstId;
-        let newLastId;
-
-        debugger;
-
-        const lastItem = this.props.featured.data.length - 1;
-
-        switch (newActiveId) {
-            case (0): {
-                newFirstId = lastItem;
-                newLastId = newActiveId + 1;
-                break;
-            }
-            case (-1): {
-                newActiveId = lastItem;
-                newFirstId = newActiveId - 1;
-                newLastId = 0;
-                break;
-            }
-            case (lastItem): {
-                newFirstId = newActiveId - 1;
-                newLastId = 0;
-                break;
-            }
-            case (lastItem + 1): {
-                newActiveId = 0;
-                newFirstId = lastItem;
-                newLastId = newActiveId + 1;
-                break;
-            }
-            default:
-                newFirstId = newActiveId - 1;
-                newLastId = newActiveId + 1;
-        }
+        
+        const countImages = this.props.featured.data.length;
+        
+        const newVisibleItems = SliderHelper.calcItems(this.state.activeId, !isLeftClick, countImages, 3);
 
         this.setState({
-            first:this.props.featured.data[newFirstId],
-            active:this.props.featured.data[newActiveId],
-            last:this.props.featured.data[newLastId],
-            activeId:newActiveId
+            first:this.props.featured.data[newVisibleItems[0]],
+            active:this.props.featured.data[newVisibleItems[1]],
+            last:this.props.featured.data[newVisibleItems[2]],
+            activeId:newVisibleItems[1]
         });
+
     }
 
     setBackgroundImage() {
