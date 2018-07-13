@@ -3,6 +3,9 @@ import { BubbleLoader } from 'react-css-loaders';
 
 import GetData from '../../../../Classes/GetData';
 
+import ProductImages from './ProductImages';
+
+
 export default class Card extends Component {
 
     constructor(props) {
@@ -22,8 +25,6 @@ export default class Card extends Component {
     }
 
     setProduct(error, data) {
-
-        debugger;
 
         if(!error) {
             this.setState({
@@ -62,25 +63,9 @@ export default class Card extends Component {
                 <section className="product-card-content">
                     <h2 className="section-name">Ботинки женские</h2>
                     <section className="product-card-content__main-screen">
-                        <section className="main-screen__favourite-product-slider">
-                            <div className="favourite-product-slider">
-                                <div className="favourite-product-slider__arrow favourite-product-slider__arrow_up arrow-up"/>
-                                <div className="favourite-product-slider__item favourite-product-slider__item-1">
-                                    <a href="#"/>
-                                </div>
-                                <div className="favourite-product-slider__item favourite-product-slider__item-2">
-                                    <a href="#"/>
-                                </div>
-                                <div className="favourite-product-slider__item favourite-product-slider__item-3">
-                                    <a href="#"/>
-                                </div>
-                                <div className="favourite-product-slider__arrow favourite-product-slider__arrow_down arrow-down"/>
-                            </div>
-                        </section>
-                        <div className="main-screen__favourite-product-pic">
-                            <a href="#"><img src="img/product-card-pics/product-card__favourite-product-pic.png" alt=""/></a>
-                            <a href="#" className="main-screen__favourite-product-pic__zoom"/>
-                        </div>
+
+                        <ProductImages images={this.state.product.images} nameProduct={this.state.title} />
+
                         <div className="main-screen__product-info">
                             <div className="product-info-title"><h2>Ботинки женские</h2><div className="in-stock">В наличии</div></div>
                             <div className="product-features">

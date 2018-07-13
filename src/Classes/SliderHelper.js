@@ -1,11 +1,11 @@
 
 export default class SliderHelper {
      
-    static calcItems(firstImageIdOld, isArrowDown, countItems, countImeges) {
+    static calcItems(firstImageIdOld, isArrowNext, countItems, countImeges) {
 
         let newVisibleItems = [];
 
-        let id = firstImageIdOld + (isArrowDown ? 1 : -1);
+        let id = firstImageIdOld + (isArrowNext ? 1 : -1);
 
         for(let i = 0; i < countImeges; i++) {
 
@@ -19,8 +19,6 @@ export default class SliderHelper {
     
             newVisibleItems.push(id++);
         }
-
-        debugger;
 
         return newVisibleItems;
     }

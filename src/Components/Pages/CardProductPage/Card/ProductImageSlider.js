@@ -1,77 +1,82 @@
 import React, { Component } from 'react';
 import { BubbleLoader } from 'react-css-loaders';
+import PropTypes from 'prop-types';
 import $ from "jquery";
 
 import GetData from '../../../../Classes/GetData';
+import SliderHelper from '../../../../Classes/SliderHelper';
 
-export default class Card extends Component {
+export default class ProductImageSlider extends Component {
 
     arrow = false;
-
-    visibleImages = [];
 
     constructor(props) {
         super(props);
 
         this.state = {
-            firstId:null,
-            error:false
+            items:null
         };
     }
 
     componentWillMount() {
 
-        if(this.props.items.lendth !== 0) {
+        if(this.props.items.length !== 0) {
 
             this.setState({
-                firstId:this.props.items[0]
+                items:this.props.items
             })
         }
 
-        if(this.props.items.lendth > 3) {
+        if(this.props.items.length > 3) {
             this.arrow = true;
         }
-
-        
     }
 
-    setBackgroundImage() {
-        if(this.state.first && this.state.center && this.state.last) {
-            this.$firstProduct.css({"background-image":this.props.items || "none"});
-            this.$activeProduct.css({"background-image":this.state.center || "none"});
-            this.$lastProduct.css({"background-image":this.state.last || "none"});
-        } else {
+    onClickArrow(isNextArrow) {
 
-            if(!this.state.error) {
-                this.setState({
-                    error:true
-                })
-            }
-        }
+        let newPositionItems = SliderHelper.calcItems(0, !isNextArrow, this.state.items.length, 3);
+
+        let items = [];
+
+        newPositionItems.forEach((item) => {
+            items.push(this.state.items[item]);
+        })
+
+        this.setState({
+            items
+        })
     }
     
     render() {
+
+        let images = [];
+
+        for(let i = 0; (i < this.props.countVisibleImage && i < this.state.items.length); i++) {
+
+            images.push(
+                <div className="favourite-product-slider__item"
+                    style={{backgroundImage:`url(${this.state.items[i]})`}} 
+                    onClick={() => {this.props.clickOnImage(this.state.items[i]);}}/>
+            )
+        }
 
         return (
 
             <section className="main-screen__favourite-product-slider">
                 <div className="favourite-product-slider">
-                    <div className="favourite-product-slider__arrow favourite-product-slider__arrow_up arrow-up" />
-                    <div className="favourite-product-slider__item favourite-product-slider__item-1"
-                        ref={ref => this.$visibleImages[0] = $(ref)} >
-                        <a href="#" />
-                    </div>
-                    <div className="favourite-product-slider__item favourite-product-slider__item-2"
-                        ref={ref => this.$visibleImages[1] = $(ref)} >
-                        <a href="#" />
-                    </div>
-                    <div className="favourite-product-slider__item favourite-product-slider__item-3"
-                        ref={ref => this.$visibleImages[2] = $(ref)} >
-                        <a href="#" />
-                    </div>
-                    <div className="favourite-product-slider__arrow favourite-product-slider__arrow_down arrow-down" />
+                    {this.arrow && <div className="favourite-product-slider__arrow favourite-product-slider__arrow_up arrow-up" onClick={ () => { this.onClickArrow(false); } }/>}
+
+                    {images}
+
+                    {this.arrow && <div className="favourite-product-slider__arrow favourite-product-slider__arrow_down arrow-down" onClick={ () => { this.onClickArrow(true); } } />}
                 </div>
             </section>
         )
     }
+}
+
+ProductImageSlider.PropTypes = {
+    items:PropTypes.arrayOf(PropTypes.string).isRequired,
+    clickOnImage:PropTypes.function,
+    countVisibleImage:PropTypes.number.isRequired
 }
