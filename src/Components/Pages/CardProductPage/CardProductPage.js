@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { BubbleLoader } from 'react-css-loaders';
 
 import Card from './Card/Card';
 import OverlookedSlider from './OverlookedSlider';
-
-import GetData from '../../../Classes/GetData';
+import SimulatedProductsSlider from './SimulatedProductsSlider';
 
 export default class CardProductPage extends Component {
 
@@ -12,8 +10,9 @@ export default class CardProductPage extends Component {
         return (
             <div>
                 <Card id={this.props.match.params.id}/>
-                <OverlookedSlider activeId={this.props.match.params.id} countVisibleImage="5" />
+                <OverlookedSlider activeId={this.props.match.params.id} countVisibleImage={5} />
+                <SimulatedProductsSlider activeId={this.props.match.params.id} countVisibleImage={3} />
             </div>
-            )
+        )
     }
 }

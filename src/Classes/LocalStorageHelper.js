@@ -70,6 +70,40 @@ export default class LocalStorageHelper {
         localStorage.setItem(key, JSON.stringify({size}));
     }
 
+    static setOverlooked(id) {
+
+        const key = `${shopConfig.nameShopInLocalStorage}_overlooked`;
+
+        let overlooked = this.getFromLocalStorage(key);
+
+        if(overlooked) {
+
+            const indexInOverlooked = overlooked.indexOf(parseInt(id));
+
+            if(indexInOverlooked !== -1) {
+                overlooked.splice(indexInOverlooked, 1);
+            }
+
+            overlooked.unshift(parseInt(id));
+
+            if(overlooked.length > 10) {
+                overlooked.pop();
+            }
+
+        } else {
+
+            overlooked = [parseInt(id)];
+        }
+
+        localStorage.setItem(key, JSON.stringify(overlooked));
+
+    }
+
+    static getOverlooked() {
+        const key = `${shopConfig.nameShopInLocalStorage}_overlooked`;
+        return this.getFromLocalStorage(key);
+    }
+
     static getFromLocalStorage(key) {
 
         try

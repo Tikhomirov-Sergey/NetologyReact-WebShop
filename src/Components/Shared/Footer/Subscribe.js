@@ -46,7 +46,7 @@ export default class Subscribe extends Component {
                         {
                             this.props.radioItems.map((item) => {
                                 return (
-                                    <label className="subscribe__radio_label">
+                                    <label className="subscribe__radio_label" key={item.value}>
                                         <input className="subscribe__radio" type="radio" name={this.props.nameRadio} value={item.value} defaultChecked={item.checked}/>
                                         <div className="subscribe__radio_text">{item.text}</div>
                                     </label>

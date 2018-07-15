@@ -12,7 +12,7 @@ export default class FooterInfo extends Component {
                     {
                         this.props.paidSystem.items.map((item) => {
                             return (
-                                <div className={`footer__paid ${item.className}`}/>
+                                <div className={`footer__paid ${item.className}`} key={item.className}/>
                             );
                         })
                     }
@@ -24,13 +24,15 @@ export default class FooterInfo extends Component {
                     {
                         this.props.socialLinks.items.map((item) => {
                             return (
-                                <div className={`footer__social-link ${item.className}`}/>
+                                <div className={`footer__social-link ${item.className}`} key={item.className}/>
                             )
                         })
                     }
 
                 </div>
-                <div className="footer__copyright">2009-{new Date().getYear()} © BosaNoga.ru — модный интернет-магазин обуви<br/> и аксессуаров. Все права защищены. Доставка по всей России!</div>
+                <div className="footer__copyright">
+                    2009-{new Date().getYear()} © BosaNoga.ru — модный интернет-магазин обуви<br/> и аксессуаров. Все права защищены. Доставка по всей России!
+                </div>
             </div>
         );
     }

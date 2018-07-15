@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BubbleLoader } from 'react-css-loaders';
 
 import GetData from '../../../../Classes/GetData';
+import LocalStorageHelper from '../../../../Classes/LocalStorageHelper';
+
 
 import ProductImages from './ProductImages/ProductImages';
 import ProductInfo from './ProductInfo/ProductInfo';
@@ -22,7 +24,9 @@ export default class Card extends Component {
     }
 
     componentDidMount() {
-        GetData.getProductByid(this.props.id, this.setProduct)
+        GetData.getProductByid(this.props.id, this.setProduct);
+
+        LocalStorageHelper.setOverlooked(this.props.id);
     }
 
     componentWillReceiveProps(newProps) {
@@ -31,7 +35,9 @@ export default class Card extends Component {
             product:false
         });
 
-        GetData.getProductByid(newProps.id, this.setProduct)
+        GetData.getProductByid(newProps.id, this.setProduct);
+
+        LocalStorageHelper.setOverlooked(newProps.id);
     }
 
     setProduct(error, data) {

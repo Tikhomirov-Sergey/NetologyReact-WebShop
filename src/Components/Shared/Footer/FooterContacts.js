@@ -22,7 +22,7 @@ FooterInfo.propTypes = {
     }),
     email:PropTypes.shape({
         email:PropTypes.string.isRequired,
-        text:PropTypes.string.isRequired
+        text:PropTypes.string
     })
 };
 

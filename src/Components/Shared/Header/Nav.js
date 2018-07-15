@@ -13,7 +13,7 @@ export default class Nav extends Component {
                         {
                             this.props.items.map((item) => {
                                 return (
-                                    <li className={`main-menu__item ${item.className}`}>
+                                    <li className={`main-menu__item ${item.className ? item.className : ""}`} key={item.text} >
                                         <NavLink to={item.to}>{item.text}</NavLink>
                                     </li>
                                 );
@@ -26,19 +26,10 @@ export default class Nav extends Component {
     }
 }
 
-/*HeaderInfo.propTypes = {
-    tel:PropTypes.shape({
-        tel:PropTypes.string.isRequired,
-        text:PropTypes.string.isRequired
-    }),
-    workingTime:PropTypes.shape({
-        text:PropTypes.string.isRequired
-    }),
-    logo:PropTypes.shape({
-        src:PropTypes.string.isRequired,
-        alt:PropTypes.string.isRequired
-    }),
-    info:PropTypes.shape({
-        text:PropTypes.string.isRequired
-    })
-};*/
+Nav.propTypes = {
+    items:PropTypes.arrayOf(PropTypes.shape({
+        to:PropTypes.string.isRequired,
+        text:PropTypes.string.isRequired,
+        className:PropTypes.string
+    }))
+};

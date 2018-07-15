@@ -66,7 +66,8 @@ export default class ProductImageSlider extends Component {
                 images.push(
                     <div className="favourite-product-slider__item"
                         style={{backgroundImage:`url(${this.state.items[i]})`}}
-                        onClick={() => {this.props.clickOnImage(this.state.items[i]);}}/>
+                        onClick={() => {this.props.clickOnImage(this.state.items[i]);}}
+                        key={this.state.items[i]} />
                 )
             }
         }

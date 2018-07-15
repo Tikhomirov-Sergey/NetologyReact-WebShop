@@ -11,7 +11,7 @@ export default class FooterMenu extends Component {
                 {
                     this.props.items.map((item) => {
                       return (
-                          <li>
+                          <li key={item.text}>
                               <NavLink to={item.to}>{item.text}</NavLink>
                           </li>
                       );

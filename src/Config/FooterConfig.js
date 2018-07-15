@@ -33,16 +33,16 @@ export default {
             className:"footer__menu_about",
             items:[
                 {
-                    to:"#",
+                    to:"/",
                     text:"BosaNoga"
                 },
                 {
-                    to:"#",
-                    text:"BosaNoga"
+                    to:"/",
+                    text:"BosaNoga1"
                 },
                 {
-                    to:"#",
-                    text:"BosaNoga"
+                    to:"/",
+                    text:"BosaNoga2"
                 }
             ]
 
@@ -52,15 +52,15 @@ export default {
             className:"footer__menu_collection",
             items:[
                 {
-                    to:"#",
+                    to:"/",
                     text:"Обувь"
                 },
                 {
-                    to:"#",
+                    to:"/",
                     text:"Аксессуары"
                 },
                 {
-                    to:"#",
+                    to:"/",
                     text:"Для дома"
                 }
             ]
@@ -71,15 +71,15 @@ export default {
             className:"footer__menu_help",
             items:[
                 {
-                    to:"#",
+                    to:"/",
                     text:"Как купить?"
                 },
                 {
-                    to:"#",
+                    to:"/",
                     text:"Возврат"
                 },
                 {
-                    to:"#",
+                    to:"/",
                     text:"Контакты"
                 }
             ]

@@ -12,7 +12,7 @@ export default class FooterMenus extends Component {
                 {
                     this.props.menus.map((menu) => {
                         return (
-                            <div className={`footer__menu ${menu.className}`}>{menu.title}
+                            <div className={`footer__menu ${menu.className}`} key={menu.title}>{menu.title}
                                 <FooterMenu items={menu.items}/>
                             </div>
                         )

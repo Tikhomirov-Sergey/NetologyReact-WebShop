@@ -24,5 +24,8 @@ export default {
             key:"reason",
             name:"Повод"
         }
+    ],
+    simulateProductCriteria: [
+        "reason", "season", "categoryId"
     ]
 }

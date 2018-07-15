@@ -3,10 +3,9 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import GetData from '../../../Classes/GetData';
-import LocalStorageHelper from '../../../Classes/LocalStorageHelper'
 import SliderHelper from '../../../Classes/SliderHelper';
 
-export default class OverlookedSlider extends Component {
+export default class SimulatedProductsSlider extends Component {
 
     arrow = false;
 
@@ -31,22 +30,16 @@ export default class OverlookedSlider extends Component {
 
     loadItems(activeId) {
 
-        let itemsId = LocalStorageHelper.getOverlooked();
-
         activeId = activeId || this.props.activeId;
-
-        if(itemsId && itemsId.length !== 0) {
-
-            itemsId = itemsId.filter(item => parseInt(activeId) !== parseInt(item));
-            GetData.getProductsById(itemsId, this.setItems);
-        }
-
-        this.arrow = itemsId && (this.props.countVisibleImage < itemsId.length);
+        GetData.getSimilarProducts(activeId, this.setItems)
     }
 
     setItems(error, items) {
 
         if(!error && items && items.length !== 0) {
+
+            this.arrow = this.props.countVisibleImage < items.length;
+
             this.setState({
                 items
             });
@@ -62,10 +55,17 @@ export default class OverlookedSlider extends Component {
             for(let i = 0; (i < this.props.countVisibleImage && i < this.state.items.length); i++) {
 
                 images.push(
-                    <div className="overlooked-slider__item"
-                         style={{backgroundImage:`url(${this.state.items[i].images[0]})`}}
-                         key={this.state.items[i].id} >
-                        <Link to={`/product/${this.state.items[i].id}`} />
+                    <div className="similar-products-slider__item-list__item-card item" key={this.state.items[i].id}>
+                        <div className="similar-products-slider__item">
+                            <Link to={`/product/${this.state.items[i].id}`} >
+                                <img src={this.state.items[i].images[0]} alt={this.state.items[i].title}/>
+                            </Link>
+                        </div>
+                        <div className="similar-products-slider__item-desc">
+                            <h4 className="similar-products-slider__item-name">{this.state.items[i].title}</h4>
+                            <p className="similar-products-slider__item-producer">Производитель: <span className="producer">{this.state.items[i].brand}</span></p>
+                            <p className="similar-products-slider__item-price">{this.state.items[i].price}</p>
+                        </div>
                     </div>
                 )
             }
@@ -96,21 +96,21 @@ export default class OverlookedSlider extends Component {
 
         return (
 
-            <section className="product-card__overlooked-slider">
-                <h3>Вы смотрели:</h3>
-                <div className="overlooked-slider">
-                    {this.arrow && <div className="overlooked-slider__arrow overlooked-slider__arrow_left arrow" onClick={() => {this.onClickArrow(false);}}/>}
+            <section className="product-card__similar-products-slider">
+                <h3>Похожие товары:</h3>
+                <div className="similar-products-slider">
+                    {this.arrow && <div className="similar-products-slider__arrow similar-products-slider__arrow_left arrow" onClick={() => {this.onClickArrow(false);}}/>}
                     {
                         this.getImages()
                     }
-                    {this.arrow && <div className="overlooked-slider__arrow overlooked-slider__arrow_right arrow" onClick={() => {this.onClickArrow(true);}}/>}
+                    {this.arrow && <div className="similar-products-slider__arrow similar-products-slider__arrow_right arrow" onClick={() => {this.onClickArrow(false);}}/>}
                 </div>
             </section>
         )
     }
 }
 
-OverlookedSlider.PropTypes = {
-    activeId:PropTypes.number.isRequired,
+SimulatedProductsSlider.PropTypes = {
+    activeId:PropTypes.arrayOf(PropTypes.string).isRequired,
     countVisibleImage:PropTypes.number.isRequired
 };
