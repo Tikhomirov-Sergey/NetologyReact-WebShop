@@ -32,7 +32,9 @@ export default class FeaturedMenu extends Component {
                     {
                         this.props.items.map((item) => {
                             return (
-                                <li className={`new-deals__menu-item ${(this.props.idActiveCategory === item.id) ? "new-deals__menu-item_active" : ""}`} onClick={this.changeCategory.bind(this)} value={item.id}>
+                                <li className={`new-deals__menu-item ${(this.props.idActiveCategory === item.id) ? "new-deals__menu-item_active" : ""}`}
+                                    onClick={this.changeCategory.bind(this)} value={item.id}
+                                    key={item.id} >
                                     <a href="#">{item.title}</a>
                                 </li>
                             );

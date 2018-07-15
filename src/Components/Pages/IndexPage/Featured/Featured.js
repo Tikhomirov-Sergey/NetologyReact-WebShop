@@ -3,7 +3,7 @@ import { BubbleLoader } from 'react-css-loaders';
 
 import ProductCard from './ProductCard';
 import FeaturedMenu from './FeaturedMenu';
-import FeaturedSlider from './FeaturedSlider';
+import FeaturedSlider from './FeaturedSliderNew';
 
 import GetData from '../../../../Classes/GetData';
 
@@ -85,7 +85,7 @@ export default class Featured extends Component {
                 <section className="new-deals wave-bottom">
                     <h2 className="h2">Новинки</h2>
                     <FeaturedMenu items={this.state.categories} idActiveCategory={this.state.idActiveCategory} onChangeCategory={this.changeCategory} />
-                    <FeaturedSlider featured={this.state.featured}/>
+                    <FeaturedSlider featured={this.state.featured} countVisibleImage="3"/>
                 </section>
         );
     }

@@ -18,7 +18,6 @@ export default class OverlookedSlider extends Component {
         };
 
         this.setItems = this.setItems.bind(this);
-
     }
 
     componentWillMount() {
