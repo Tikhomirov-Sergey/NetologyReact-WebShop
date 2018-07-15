@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import LocalStorageHelper from '../../Classes/LocalStorageHelper';
+import LocalStorageHelper from '../../../../../Classes/LocalStorageHelper';
 
 export default class Favorite extends Component {
 
@@ -32,7 +32,7 @@ export default class Favorite extends Component {
     }
 
     toggleFavorite(isFavorite) {
-
+    debugger;
         if(isFavorite) {
             LocalStorageHelper.removeFavorite(this.props.id);
 
@@ -54,13 +54,17 @@ export default class Favorite extends Component {
         if(this.state.favorite)
         {
             return (
-                <div className="new-deals__product_favorite chosen" onClick={() => {this.toggleFavorite(true)}} />
+                <a className="in-favourites-wrapper" onClick={() => {this.toggleFavorite(true)}}>
+                    <div className="favourite chosen"/><p className="in-favourites">Из избранного</p>
+                </a>
             );
         }
         else
         {
             return (
-                <div className="new-deals__product_favorite" onClick={() => {this.toggleFavorite(false)}} />
+                <a className="in-favourites-wrapper" onClick={() => {this.toggleFavorite(false)}}>
+                    <div className="favourite"/><p className="in-favourites">В избранное</p>
+                </a>
             );
         }
     }

@@ -3,8 +3,8 @@ import { BubbleLoader } from 'react-css-loaders';
 import PropTypes from 'prop-types';
 import $ from "jquery";
 
-import GetData from '../../../../Classes/GetData';
-import SliderHelper from '../../../../Classes/SliderHelper';
+import GetData from '../../../../../Classes/GetData';
+import SliderHelper from '../../../../../Classes/SliderHelper';
 
 export default class ProductImageSlider extends Component {
 
@@ -19,15 +19,23 @@ export default class ProductImageSlider extends Component {
     }
 
     componentWillMount() {
+        this.setNewSlider();
+    }
 
-        if(this.props.items.length !== 0) {
+    componentWillReceiveProps() {
+        this.setNewSlider();
+    }
+
+    setNewSlider() {
+
+        if(this.props.items && this.props.items.length !== 0) {
 
             this.setState({
                 items:this.props.items
             })
         }
 
-        if(this.props.items.length > 3) {
+        if(this.props.items && this.props.items.length > 3) {
             this.arrow = true;
         }
     }
@@ -40,7 +48,7 @@ export default class ProductImageSlider extends Component {
 
         newPositionItems.forEach((item) => {
             items.push(this.state.items[item]);
-        })
+        });
 
         this.setState({
             items
@@ -51,13 +59,16 @@ export default class ProductImageSlider extends Component {
 
         let images = [];
 
-        for(let i = 0; (i < this.props.countVisibleImage && i < this.state.items.length); i++) {
+        if(this.state.items) {
 
-            images.push(
-                <div className="favourite-product-slider__item"
-                    style={{backgroundImage:`url(${this.state.items[i]})`}} 
-                    onClick={() => {this.props.clickOnImage(this.state.items[i]);}}/>
-            )
+            for(let i = 0; (i < this.props.countVisibleImage && i < this.state.items.length); i++) {
+
+                images.push(
+                    <div className="favourite-product-slider__item"
+                        style={{backgroundImage:`url(${this.state.items[i]})`}}
+                        onClick={() => {this.props.clickOnImage(this.state.items[i]);}}/>
+                )
+            }
         }
 
         return (
@@ -79,4 +90,4 @@ ProductImageSlider.PropTypes = {
     items:PropTypes.arrayOf(PropTypes.string).isRequired,
     clickOnImage:PropTypes.function,
     countVisibleImage:PropTypes.number.isRequired
-}
+};

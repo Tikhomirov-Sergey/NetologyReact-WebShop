@@ -12,12 +12,20 @@ export default class ProductImages extends Component {
         this.state = {
             mainImage:null,
             sliderImages:null
-        }
+        };
 
         this.changeMainImage = this.changeMainImage.bind(this);
     }
 
     componentWillMount() {
+        this.setNewImages();
+    }
+
+    componentWillReceiveProps() {
+        this.setNewImages();
+    }
+
+    setNewImages() {
 
         let mainImage;
         let sliderImages;

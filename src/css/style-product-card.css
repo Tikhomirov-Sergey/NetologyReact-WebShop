@@ -288,11 +288,23 @@ li.active {
 }
 
 .favourite {
+   display: inline-block;
+   width: 30px;
+   height: 30px;
+   vertical-align: top;
+   background: url(../img/product-card-pics/product-card__favorite.png) no-repeat;
+ }
+
+.favourite.chosen {
   display: inline-block;
   width: 30px;
   height: 30px;
   vertical-align: top;
-  background: url(../img/product-card-pics/product-card__favorite.png) no-repeat;
+  background: url(../img/new-deals__product_favorite_chosen.png) no-repeat;
+}
+
+.favourite.chosen:hover {
+  background: url(../img/new-deals__product_favorite_refuse.png) no-repeat;
 }
 
 /*Счётчик для корзины*/
@@ -494,7 +506,7 @@ li.active {
   height: 180px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -516,6 +528,8 @@ li.active {
   background-position: center center;
   background-size: contain;
   overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .overlooked-slider__item:hover {

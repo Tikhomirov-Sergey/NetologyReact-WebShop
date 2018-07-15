@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { BubbleLoader } from 'react-css-loaders';
 import PropTypes from 'prop-types';
-import $ from "jquery";
-
-import GetData from '../../../../Classes/GetData';
-import SliderHelper from '../../../../Classes/SliderHelper';
 
 export default class ProductMainImages extends Component {
 
@@ -13,7 +9,7 @@ export default class ProductMainImages extends Component {
 
         this.state = {
             zoom:false
-        }
+        };
 
         this.toggleZoom = this.toggleZoom.bind(this);
     }

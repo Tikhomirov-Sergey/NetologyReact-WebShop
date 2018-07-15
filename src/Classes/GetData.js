@@ -1,9 +1,7 @@
 
 import axios from 'axios';
 
-import categories from '../data/categories.json';
 import featured from '../data/featured.json';
-import products from '../data/products.json';
 
 import shopConfig from '../Config/ShopConfig';
 
@@ -39,6 +37,31 @@ export default class GetData {
             .get(link)
             .then((response) => {
                 callback(false, response.data.data)
+            })
+            .catch((error) => {
+                callback(error);
+            })
+    }
+
+    static getProductsById(id, callback) {
+
+        let waitAll = [];
+
+        id.forEach((item) => {
+            let link = `${shopConfig.apiHost}/products/${id}`;
+            waitAll.push(axios.get(link));
+        });
+
+        Promise.all(waitAll)
+            .then((response) => {
+
+                let items = [];
+
+                response.forEach((item) => {
+                    items.push(item.data.data);
+                });
+
+                callback(false, items);
             })
             .catch((error) => {
                 callback(error);
