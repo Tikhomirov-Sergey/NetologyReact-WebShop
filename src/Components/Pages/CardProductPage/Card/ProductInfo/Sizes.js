@@ -49,26 +49,28 @@ export default class ProductInfo extends Component {
     render() {
 
         return (
-            <div>
-                <p className="size">Размер</p>
-                <ul className="sizes">
+            <div className="size-container">
+                <div className="size-container__avalible-container">
+                    <p className="size">Размер</p>
+                    <ul className="sizes">
 
-                    {
-                        this.props.sizes.map((item) => {
+                        {
+                            this.props.sizes.map((item) => {
 
-                            if(item.available) {
+                                if(item.available) {
 
-                                return (
-                                    <li key={item.size} className={item.size === this.state.selectedSize ? "active" : ""}>
-                                        <a onClick={() => {this.setSize(item.size)}}>{item.size}</a>
-                                    </li>
-                                );
+                                    return (
+                                        <li key={item.size} className={item.size === this.state.selectedSize ? "active" : ""}>
+                                            <a onClick={() => {this.setSize(item.size)}}>{item.size}</a>
+                                        </li>
+                                    );
 
-                            }
-                        })
-                    }
+                                }
+                            })
+                        }
 
-                </ul>
+                    </ul>
+                </div>
                 <div className="size-wrapper">
                     <a href="#"><span className="size-rule"/><p className="size-table">Таблица размеров</p></a>
                 </div>

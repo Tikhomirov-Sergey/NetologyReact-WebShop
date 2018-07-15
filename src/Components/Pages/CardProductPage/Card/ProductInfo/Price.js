@@ -24,7 +24,7 @@ export default class Price extends Component {
     render() {
 
         return (
-            <div>
+            <div className="product-card__price-container">
                 <div className="basket-item__quantity">
                     <div className="basket-item__quantity-change basket-item-list__quantity-change_minus" onClick={() => {this.changeCoefficient(false)}}>-</div>
                     {this.state.coefficient}

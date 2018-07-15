@@ -208,11 +208,20 @@ a.main-screen__favourite-product-pic__zoom{
   vertical-align: bottom;
 }
 
+.product-card__shared-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /*Блок с размерами*/
+
+.size-container__avalible-container {
+  display: flex;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
 .size {
-  position: relative;
-  top: 19px;
-  left: 16px;
   display: inline-block;
   font-family: Roboto, sans-serif;
   font-style: normal;
@@ -222,9 +231,7 @@ a.main-screen__favourite-product-pic__zoom{
 }
 
 .sizes {
-  position: relative;
-  top: 19px;
-  left: 130px;
+  margin-left: 120px;
   display: inline-block;
 }
 
@@ -239,11 +246,16 @@ li.active {
   border-radius: 50%;
 }
 
+.size-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 .size-wrapper {
-  position: relative;
-  top: 45px;
-  right: 42px;
-  display: inline-block;
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-right: 33px;
 }
 
 .size-rule {
@@ -263,11 +275,9 @@ li.active {
 }
 
 /*Избранное*/
-.in-favourites-wrapper {  
-  position: relative;
-  top: 58px;
-  left: 204px;
-  display: inline-block;
+.in-favourites-wrapper {
+  align-self: flex-end;
+  margin-top: 15px;
   width: 200px;
 }
 
@@ -307,11 +317,19 @@ li.active {
   background: url(../img/new-deals__product_favorite_refuse.png) no-repeat;
 }
 
+.product-card__price-container {
+  margin-left: 25px;
+  margin-top: -25px;
+}
+
+.product-card__price-container-and-basket-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
 /*Счётчик для корзины*/
 .basket-item__quantity {
-  position: relative;
-  top: 60px;
-  left: 5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -333,9 +351,6 @@ li.active {
 
 /*Цена*/
 .price {
-  position: relative;
-  top: 65px;
-  left: 6px;
   display: inline-block;
   font-family: Roboto;
   font-weight: 500;
@@ -345,9 +360,6 @@ li.active {
 
 /*Кнопка "В корзину"*/
 .in-basket {
-  position: relative;
-  top: 60px;
-  left: 87px;
   width: 246px;
   height: 47px;
   font-family: Roboto, sans-serif;

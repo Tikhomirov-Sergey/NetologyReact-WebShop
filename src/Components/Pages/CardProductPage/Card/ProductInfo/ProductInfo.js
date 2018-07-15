@@ -33,10 +33,14 @@ export default class ProductInfo extends Component {
 
                     </table>
                 </div>
-                <Sizes sizes={this.props.productInfo.sizes}/>
-                <Favorite id={this.props.productInfo.id}/>
-                <Price price={this.props.productInfo.price} />
-                <button className="in-basket in-basket-click">В корзину</button>
+                <div className="product-card__shared-button-container">
+                    <Sizes sizes={this.props.productInfo.sizes}/>
+                    <Favorite id={this.props.productInfo.id}/>
+                    <div className="product-card__price-container-and-basket-button">
+                        <Price price={this.props.productInfo.price} />
+                        <button className="in-basket in-basket-click">В корзину</button>
+                    </div>
+                </div>
             </div>
         );
     }
